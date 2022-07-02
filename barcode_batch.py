@@ -101,11 +101,13 @@ def popcount(x):
     return x
 
 def allcoses(mer, tcosvecs) : # correlate a mer against all the cosine templates
+    mmer = torch.LongTensor(mer).to(device)
     ncos = tcosvecs.shape[0]
     cosvec = torch.zeros(ncos, 64, dtype=torch.float, device=device)
     for k in range(ncos) :
-        cosvec[k,mer] =  tcoses[k, torch.arange(len(mer), dtype=torch.long, device=device)]
-    return torch.sum(torch.unsqueeze(cosvec,dim=1)*tcosvecs,dim=2) # shape [ncos,ngoal_g]
+        source = tcoses[k, torch.arange(len(mmer), dtype=torch.long, device=device)]
+        cosvec[k,:].index_add_(0,mmer,source)
+    return torch.sum(torch.unsqueeze(cosvec,dim=1)*tcosvecs,dim=2)
 
 def prank(arr, descending=False) : # returns rank of each element in torch array
     argsrt = torch.argsort(arr, descending=descending)
