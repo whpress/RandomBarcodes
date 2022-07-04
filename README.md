@@ -3,7 +3,9 @@
 This repository is for code accompanying the paper
 ### Fast trimer statistics facilitate accurate decoding of large random DNA barcode sets even at large sequencing error rates.
 by William H. Press
-(see paper abstract below)
+
+[BioRxiv link](https://www.biorxiv.org/content/10.1101/2022.07.02.498575)
+(paper abstract also below)
 
 ### Usage
 The file _Barcode_trigraphs_production.ipynb_ is a stand-alone Jupyter Notebook with sequential cells for these steps:
